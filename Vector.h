@@ -8,13 +8,14 @@ template <typename T>
 class Vector
 {
 	public:
-		Vector():data(NULL),size(0),capacity(4096)														//构造函数
+		Vector():data(nullptr),size(0),capacity(4096)														//构造函数
 		{
-			T arr[capacity];
-			data=arr;
+			data = new T[capacity];
 		};  													
-		Vector(int s): data(NULL),size(s),capacity(4096){}; 											//构造函数
-		Vector(Vector<T> &vec):data(vec.data),size(vec.size),capacity(vec.capacity){}; 					//深拷贝构造函数 
+		Vector(const int s): data(nullptr),size(0),capacity(s) {											//构造函数
+			data = new T[capacity];
+		};
+		Vector(const Vector<T>&vec):data(vec.data),size(vec.size),capacity(vec.capacity){}; 					//深拷贝构造函数
 		~Vector()
 		{
 			delete[] data;
@@ -38,9 +39,9 @@ class Vector
 		void erease(const int lt, const int rt) throw (int);											//删除从[left,right]闭区间内的所有元素，下标越界抛出异常
 		T& front();																						//获取头部元素（返回引用类型）
 		T& back();																						//获取尾部元素（返回引用类型）
-		int getsize();																					//返回容器大小
-		int space();																					//返回容器容量
-		bool isempty();																					//返回容器是否为空
+		int getsize() const;																					//返回容器大小
+		int space() const;																					//返回容器容量
+		bool isempty() const;																					//返回容器是否为空
 	private:
 		T *data;
 		int size;
@@ -103,7 +104,7 @@ ostream &operator <<(ostream& out,const Vector<T>& v)
 template <typename T>
 void Vector<T>:: resize()
 {
-	if(this->getsize()==this->space() )
+	if(this->getsize()>=this->space() )
 	{
 		capacity *= 2;
         T* new_data = new T[capacity];
@@ -229,19 +230,19 @@ T& Vector<T>:: back()
 }
 
 template <typename T>
-int Vector<T>:: getsize()
+int Vector<T>:: getsize() const
 {
 	return size;
 }
 
 template <typename T>
-int Vector<T>:: space()
+int Vector<T>:: space() const
 {
 	return capacity;
 }
 
 template <typename T>
-bool Vector<T>:: isempty()
+bool Vector<T>:: isempty() const
 {
 	if(size==0) return true;
 	return false;

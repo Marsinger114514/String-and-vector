@@ -7,9 +7,9 @@
 class String {
 public:
     String(); // 默认构造函数
-    String(const char* str); // 参数为C字符串的构造函数
+    String(const char* str =""); // 参数为C字符串的构造函数
     String(const String& other); // 拷贝构造函数
-    String(String&& other) noexcept; // 移动构造函数
+    String(String && other) noexcept; // 移动构造函数
     ~String(); // 析构函数
 
     String& operator=(const String& other); // 拷贝赋值运算符

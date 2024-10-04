@@ -1,4 +1,4 @@
-#include "string.h"
+#include "String.h"
 #include <stdexcept>
 // 默认构造函数，初始化 data 为 nullptr，长度 len 为 0
 String::String() : data(nullptr), len(0) {}
