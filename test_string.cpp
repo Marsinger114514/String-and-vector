@@ -90,7 +90,4 @@ void testStringClass() {
     }
 }
 
-int main() {
-    testStringClass();
-    return 0;
-}
+
