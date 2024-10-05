@@ -6,5 +6,6 @@
 
 int main() {
     void testStringClass();
+    testStringClass();
     return 0;
 }
