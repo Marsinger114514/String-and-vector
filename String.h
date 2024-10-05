@@ -7,9 +7,9 @@
 class String {
 public:
     String(); // 默认构造函数
-    String(const char* str =""); // 参数为C字符串的构造函数
+    String(const char* str); // 参数为C字符串的构造函数
     String(const String& other); // 拷贝构造函数
-    String(String && other) noexcept; // 移动构造函数
+    String(String&& other) noexcept; // 移动构造函数
     ~String(); // 析构函数
 
     String& operator=(const String& other); // 拷贝赋值运算符
@@ -32,6 +32,14 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const String& str); // 重载<<运算符
     friend std::istream& operator>>(std::istream& is, String& str); // 重载>>运算符
+
+    void clear(); // 清空字符串数据
+    String copy() const; // 返回字符串的副本
+    unsigned int size() const; // 返回字符串的大小
+    bool empty() const; // 判断字符串是否为空
+    String& reverse(); // 逆转字符串
+    String& append(const String& str); // 追加字符串
+    String& erase(const unsigned int& index, const unsigned int& len); // 擦除指定位置的子串
 
 private:
     char* data;
