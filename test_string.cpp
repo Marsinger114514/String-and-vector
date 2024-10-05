@@ -58,6 +58,33 @@ void testStringClass() {
         String str6;
         std::cin >> str6;
         std::cout << "You entered: " << str6 << std::endl;
+
+        // 清空字符串数据
+        str6.clear();
+        std::cout << "After clear, str6: '" << str6 << "' (length: " << str6.length() << ", empty: " << std::boolalpha << str6.empty() << ")" << std::endl;
+
+        // 返回字符串的副本
+        String str7 = str1.copy();
+        std::cout << "Copied string: '" << str7 << "' (length: " << str7.length() << ")" << std::endl;
+
+        // 返回字符串的大小
+        std::cout << "Size of str1: " << str1.size() << std::endl;
+
+        // 判断字符串是否为空
+        std::cout << "Is str1 empty? " << std::boolalpha << str1.empty() << std::endl;
+
+        // 逆转字符串
+        str1.reverse();
+        std::cout << "Reversed string: '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
+        str1.reverse(); // Reverse back to original for further tests
+
+        // 追加字符串
+        str1.append(" World");
+        std::cout << "Appended ' World': '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
+
+        // 擦除指定位置的子串
+        str1.erase(5, 5); // Erase " World"
+        std::cout << "After erase ' Hello': '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Caught an exception: " << e.what() << std::endl;
     }
