@@ -1,5 +1,7 @@
 #include "String.h"
 #include <stdexcept>
+#include <cstring>
+
 // 默认构造函数，初始化 data 为 nullptr，长度 len 为 0
 String::String() : data(nullptr), len(0) {}
 
@@ -108,6 +110,7 @@ String& String::operator+=(const String& other) {
     len = new_len;
     return *this;
 }
+
 //重载各个比较运算符
 bool String::operator<(const String& other) const {
     return std::strcmp(data, other.data) < 0;
@@ -145,4 +148,51 @@ std::istream& operator>>(std::istream& is, String& str) {
     is >> buffer;
     str = String(buffer);
     return is;
+}
+
+// 清空字符串数据
+void String::clear() {
+    delete[] data;
+    data = nullptr;
+    len = 0;
+}
+
+// 返回字符串的副本
+String String::copy() const {
+    return String(data);
+}
+
+// 返回字符串的大小
+unsigned int String::size() const {
+    return static_cast<unsigned int>(len);
+}
+
+// 判断字符串是否为空
+bool String::empty() const {
+    return len == 0;
+}
+
+// 逆转字符串
+String& String::reverse() {
+    for (size_t i = 0; i < len / 2; ++i) {
+        std::swap(data[i], data[len - i - 1]);
+    }
+    return *this;
+}
+
+// 追加字符串
+String& String::append(const String& str) {
+    *this += str;
+    return *this;
+}
+
+// 擦除指定位置的子串
+String& String::erase(const unsigned int& index, const unsigned int& len) {
+    if (index >= this->len || index + len > this->len) {
+        throw std::out_of_range("Index out of range");
+    }
+    std::memmove(data + index, data + index + len, this->len - index - len + 1);
+    this->len -= len;
+    data[this->len] = '\0';
+    return *this;
 }
