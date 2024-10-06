@@ -2,35 +2,35 @@
 #include <stdexcept>
 #include <cstring>
 
-// é»˜è®¤æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ– data ä¸º nullptrï¼Œé•¿åº¦ len ä¸º 0
+// Ä¬ÈÏ¹¹Ôìº¯Êı£¬³õÊ¼»¯ data Îª nullptr£¬³¤¶È len Îª 0
 String::String() : data(nullptr), len(0) {}
 
-// æ„é€ å‡½æ•°ï¼Œæ¥æ”¶ C é£æ ¼å­—ç¬¦ä¸²å¹¶å¤åˆ¶æ•°æ®
+// ¹¹Ôìº¯Êı£¬½ÓÊÕ C ·ç¸ñ×Ö·û´®²¢¸´ÖÆÊı¾İ
 String::String(const char* str) : data(nullptr), len(0) {
     if (str) {
         copy_data(str);
     }
 }
 
-// æ‹·è´æ„é€ å‡½æ•°ï¼Œå¤åˆ¶å…¶ä»– String å¯¹è±¡çš„æ•°æ®
+// ¿½±´¹¹Ôìº¯Êı£¬¸´ÖÆÆäËû String ¶ÔÏóµÄÊı¾İ
 String::String(const String& other) : data(nullptr), len(0) {
     if (other.data) {
         copy_data(other.data);
     }
 }
 
-// ç§»åŠ¨æ„é€ å‡½æ•°ï¼Œç§»åŠ¨å…¶ä»– String å¯¹è±¡çš„æ•°æ®
+// ÒÆ¶¯¹¹Ôìº¯Êı£¬ÒÆ¶¯ÆäËû String ¶ÔÏóµÄÊı¾İ
 String::String(String&& other) noexcept : data(other.data), len(other.len) {
     other.data = nullptr;
     other.len = 0;
 }
 
-// ææ„å‡½æ•°ï¼Œé‡Šæ”¾åŠ¨æ€åˆ†é…çš„å†…å­˜
+// Îö¹¹º¯Êı£¬ÊÍ·Å¶¯Ì¬·ÖÅäµÄÄÚ´æ
 String::~String() {
     delete[] data;
 }
 
-// æ‹·è´èµ‹å€¼è¿ç®—ç¬¦
+// ¿½±´¸³ÖµÔËËã·û
 String& String::operator=(const String& other) {
     if (this != &other) {
         delete[] data;
@@ -43,7 +43,7 @@ String& String::operator=(const String& other) {
     return *this;
 }
 
-// ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦
+// ÒÆ¶¯¸³ÖµÔËËã·û
 String& String::operator=(String&& other) noexcept {
     if (this != &other) {
         delete[] data;
@@ -55,24 +55,24 @@ String& String::operator=(String&& other) noexcept {
     return *this;
 }
 
-// å¤åˆ¶æ•°æ®åˆ°åŠ¨æ€åˆ†é…çš„å†…å­˜
+// ¸´ÖÆÊı¾İµ½¶¯Ì¬·ÖÅäµÄÄÚ´æ
 void String::copy_data(const char* str) {
     len = std::strlen(str);
     data = new char[len + 1];
     std::strcpy(data, str);
 }
 
-// è¿”å›å­—ç¬¦ä¸²é•¿åº¦
+// ·µ»Ø×Ö·û´®³¤¶È
 size_t String::length() const {
     return len;
 }
 
-// è¿”å› C é£æ ¼å­—ç¬¦ä¸²
+// ·µ»Ø C ·ç¸ñ×Ö·û´®
 const char* String::c_str() const {
     return data;
 }
 
-// ä¸‹æ ‡è¿ç®—ç¬¦ï¼Œè¿”å›å¯ä¿®æ”¹å­—ç¬¦
+// ÏÂ±êÔËËã·û£¬·µ»Ø¿ÉĞŞ¸Ä×Ö·û
 char& String::operator[](size_t index) {
     if (index >= len) {
         throw std::out_of_range("Index out of range");
@@ -80,7 +80,7 @@ char& String::operator[](size_t index) {
     return data[index];
 }
 
-// ä¸‹æ ‡è¿ç®—ç¬¦ï¼Œè¿”å›ä¸å¯ä¿®æ”¹å­—ç¬¦
+// ÏÂ±êÔËËã·û£¬·µ»Ø²»¿ÉĞŞ¸Ä×Ö·û
 const char& String::operator[](size_t index) const {
     if (index >= len) {
         throw std::out_of_range("Index out of range");
@@ -88,7 +88,7 @@ const char& String::operator[](size_t index) const {
     return data[index];
 }
 
-// å­—ç¬¦ä¸²è¿æ¥è¿ç®—ç¬¦ï¼Œè¿”å›æ–°å­—ç¬¦ä¸²
+// ×Ö·û´®Á¬½ÓÔËËã·û£¬·µ»ØĞÂ×Ö·û´®
 String String::operator+(const String& other) const {
     size_t new_len = len + other.len;
     char* new_data = new char[new_len + 1];
@@ -99,7 +99,7 @@ String String::operator+(const String& other) const {
     return new_str;
 }
 
-// å­—ç¬¦ä¸²è¿½åŠ è¿ç®—ç¬¦
+// ×Ö·û´®×·¼ÓÔËËã·û
 String& String::operator+=(const String& other) {
     size_t new_len = len + other.len;
     char* new_data = new char[new_len + 1];
@@ -111,7 +111,7 @@ String& String::operator+=(const String& other) {
     return *this;
 }
 
-//é‡è½½å„ä¸ªæ¯”è¾ƒè¿ç®—ç¬¦
+//ÖØÔØ¸÷¸ö±È½ÏÔËËã·û
 bool String::operator<(const String& other) const {
     return std::strcmp(data, other.data) < 0;
 }
@@ -150,29 +150,29 @@ std::istream& operator>>(std::istream& is, String& str) {
     return is;
 }
 
-// æ¸…ç©ºå­—ç¬¦ä¸²æ•°æ®
+// Çå¿Õ×Ö·û´®Êı¾İ
 void String::clear() {
     delete[] data;
     data = nullptr;
     len = 0;
 }
 
-// è¿”å›å­—ç¬¦ä¸²çš„å‰¯æœ¬
+// ·µ»Ø×Ö·û´®µÄ¸±±¾
 String String::copy() const {
     return String(data);
 }
 
-// è¿”å›å­—ç¬¦ä¸²çš„å¤§å°
+// ·µ»Ø×Ö·û´®µÄ´óĞ¡
 unsigned int String::size() const {
     return static_cast<unsigned int>(len);
 }
 
-// åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º
+// ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎª¿Õ
 bool String::empty() const {
     return len == 0;
 }
 
-// é€†è½¬å­—ç¬¦ä¸²
+// Äæ×ª×Ö·û´®
 String& String::reverse() {
     for (size_t i = 0; i < len / 2; ++i) {
         std::swap(data[i], data[len - i - 1]);
@@ -180,13 +180,13 @@ String& String::reverse() {
     return *this;
 }
 
-// è¿½åŠ å­—ç¬¦ä¸²
+// ×·¼Ó×Ö·û´®
 String& String::append(const String& str) {
     *this += str;
     return *this;
 }
 
-// æ“¦é™¤æŒ‡å®šä½ç½®çš„å­ä¸²
+// ²Á³ıÖ¸¶¨Î»ÖÃµÄ×Ó´®
 String& String::erase(const unsigned int& index, const unsigned int& len) {
     if (index >= this->len || index + len > this->len) {
         throw std::out_of_range("Index out of range");

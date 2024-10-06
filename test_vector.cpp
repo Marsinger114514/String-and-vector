@@ -9,52 +9,52 @@
 //
 // }
 void testVector() {
-    // åˆ›å»ºä¸€ä¸ªæ•´å‹ Vector
+    // ´´½¨Ò»¸öÕûĞÍ Vector
     Vector<int> test_vector;
 
-    // å°¾éƒ¨æ·»åŠ å…ƒç´ 
+    // Î²²¿Ìí¼ÓÔªËØ
     test_vector.push_back(1);
     test_vector.push_back(2);
     test_vector.push_back(3);
-    cout << "æ·»åŠ å…ƒç´  1, 2, 3 å: " << test_vector << endl;
+    cout << "Ìí¼ÓÔªËØ 1, 2, 3 ºó: " << test_vector << endl;
 
-    // å¤´éƒ¨æ·»åŠ å…ƒç´ 
+    // Í·²¿Ìí¼ÓÔªËØ
     test_vector.push_front(0);
-    cout << "æ·»åŠ å…ƒç´  0 åˆ°å¤´éƒ¨å: " << test_vector << endl;
+    cout << "Ìí¼ÓÔªËØ 0 µ½Í·²¿ºó: " << test_vector << endl;
 
-    // åœ¨ç‰¹å®šä½ç½®æ’å…¥å…ƒç´ 
-    test_vector.insert(1, 2);  // åœ¨ç´¢å¼• 2 æ’å…¥å…ƒç´  1
-    cout << "åœ¨ç´¢å¼• 2 æ’å…¥ 1 å: " << test_vector << endl;
+    // ÔÚÌØ¶¨Î»ÖÃ²åÈëÔªËØ
+    test_vector.insert(1, 2);  // ÔÚË÷Òı 2 ²åÈëÔªËØ 1
+    cout << "ÔÚË÷Òı 2 ²åÈë 1 ºó: " << test_vector << endl;
 
-    // åˆ é™¤æœ€åä¸€ä¸ªå…ƒç´ 
+    // É¾³ı×îºóÒ»¸öÔªËØ
     test_vector.pop_back();
-    cout << "åˆ é™¤æœ€åä¸€ä¸ªå…ƒç´ å: " << test_vector << endl;
+    cout << "É¾³ı×îºóÒ»¸öÔªËØºó: " << test_vector << endl;
 
-    // åˆ é™¤ç¬¬ä¸€ä¸ªå…ƒç´ 
+    // É¾³ıµÚÒ»¸öÔªËØ
     test_vector.pop_front();
-    cout << "åˆ é™¤ç¬¬ä¸€ä¸ªå…ƒç´ å: " << test_vector << endl;
+    cout << "É¾³ıµÚÒ»¸öÔªËØºó: " << test_vector << endl;
 
-    // åˆ é™¤ç‰¹å®šä½ç½®çš„å…ƒç´ 
-    test_vector.erease(2); // åˆ é™¤ç´¢å¼• 2 çš„å…ƒç´ 
-    cout << "åˆ é™¤ç´¢å¼• 2 çš„å…ƒç´ å: " << test_vector << endl;
+    // É¾³ıÌØ¶¨Î»ÖÃµÄÔªËØ
+    test_vector.erease(2); // É¾³ıË÷Òı 2 µÄÔªËØ
+    cout << "É¾³ıË÷Òı 2 µÄÔªËØºó: " << test_vector << endl;
 
-    // åˆ é™¤ä¸€æ®µèŒƒå›´å†…çš„å…ƒç´ 
-    test_vector.erease(1, 2); // åˆ é™¤ç´¢å¼• 1 åˆ° 2 çš„å…ƒç´ 
-    cout << "åˆ é™¤ç´¢å¼• 1 åˆ° 2 çš„å…ƒç´ å: " << test_vector << endl;
+    // É¾³ıÒ»¶Î·¶Î§ÄÚµÄÔªËØ
+    test_vector.erease(1, 2); // É¾³ıË÷Òı 1 µ½ 2 µÄÔªËØ
+    cout << "É¾³ıË÷Òı 1 µ½ 2 µÄÔªËØºó: " << test_vector << endl;
 
-    // åè½¬å‘é‡
+    // ·´×ªÏòÁ¿
     test_vector.push_back(4);
     test_vector.push_back(5);
     test_vector.reverse();
-    cout << "åè½¬å: " << test_vector <<endl;
+    cout << "Ìí¼ÓÔªËØ4£¬5·´×ªºó: " << test_vector <<endl;
 
-    // æ˜¾ç¤ºå¤´éƒ¨å’Œå°¾éƒ¨å…ƒç´ 
-    cout << "å¤´éƒ¨å…ƒç´ : " << test_vector.front() << endl;
-    cout << "å°¾éƒ¨å…ƒç´ : " << test_vector.back() << endl;
+    // ÏÔÊ¾Í·²¿ºÍÎ²²¿ÔªËØ
+    cout << "Í·²¿ÔªËØ: " << test_vector.front() << endl;
+    cout << "Î²²¿ÔªËØ: " << test_vector.back() << endl;
 
-    // æ£€æŸ¥å¤§å°å’Œå®¹é‡
-    cout << "å¤§å°: " << test_vector.getsize() << ", å®¹é‡: " << test_vector.space() << endl;
+    // ¼ì²é´óĞ¡ºÍÈİÁ¿
+    cout << "´óĞ¡: " << test_vector.getsize() << ", ÈİÁ¿: " << test_vector.space() << endl;
 
-    // æ£€æŸ¥å‘é‡æ˜¯å¦ä¸ºç©º
-    cout << "æ˜¯å¦ä¸ºç©º: " << (test_vector.isempty() ? "æ˜¯" : "å¦") << endl;
+    // ¼ì²éÏòÁ¿ÊÇ·ñÎª¿Õ
+    cout << "ÊÇ·ñÎª¿Õ: " << (test_vector.isempty() ? "ÊÇ" : "·ñ") << endl;
 }

@@ -3,33 +3,33 @@
 
 void testStringClass() {
     try {
-        // é»˜è®¤æž„é€ å‡½æ•°
+        // Ä¬ÈÏ¹¹Ôìº¯Êý
         String str1;
         std::cout << "Default constructed string: '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
 
-        // C é£Žæ ¼å­—ç¬¦ä¸²æž„é€ å‡½æ•°
+        // C ·ç¸ñ×Ö·û´®¹¹Ôìº¯Êý
         String str2("Hello");
         std::cout << "C-string constructed string: '" << str2 << "' (length: " << str2.length() << ")" << std::endl;
 
-        // æ‹·è´æž„é€ å‡½æ•°
+        // ¿½±´¹¹Ôìº¯Êý
         String str3(str2);
         std::cout << "Copy constructed string: '" << str3 << "' (length: " << str3.length() << ")" << std::endl;
 
-        // ç§»åŠ¨æž„é€ å‡½æ•°
+        // ÒÆ¶¯¹¹Ôìº¯Êý
         String str4(std::move(str3));
         std::cout << "Move constructed string: '" << str4 << "' (length: " << str4.length() << ")" << std::endl;
         std::cout << "Original string after move: '" << str3 << "' (length: " << str3.length() << ")" << std::endl;
 
-        // æ‹·è´èµ‹å€¼è¿ç®—ç¬¦
+        // ¿½±´¸³ÖµÔËËã·û
         str1 = str2;
         std::cout << "After copy assignment, str1: '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
 
-        // ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦
+        // ÒÆ¶¯¸³ÖµÔËËã·û
         str1 = std::move(str4);
         std::cout << "After move assignment, str1: '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
         std::cout << "Original string after move assignment: '" << str4 << "' (length: " << str4.length() << ")" << std::endl;
 
-        // ä¸‹æ ‡è¿ç®—ç¬¦
+        // ÏÂ±êÔËËã·û
         std::cout << "Character at index 1: " << str1[1] << std::endl;
         try {
             std::cout << "Character at index 100: " << str1[100] << std::endl;
@@ -37,15 +37,15 @@ void testStringClass() {
             std::cout << "Caught exception: " << e.what() << std::endl;
         }
 
-        // å­—ç¬¦ä¸²è¿žæŽ¥è¿ç®—ç¬¦
+        // ×Ö·û´®Á¬½ÓÔËËã·û
         String str5 = str1 + str2;
         std::cout << "Concatenated string: '" << str5 << "' (length: " << str5.length() << ")" << std::endl;
 
-        // å­—ç¬¦ä¸²è¿½åŠ è¿ç®—ç¬¦
+        // ×Ö·û´®×·¼ÓÔËËã·û
         str1 += str2;
         std::cout << "Appended string: '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
 
-        // æ¯”è¾ƒè¿ç®—ç¬¦
+        // ±È½ÏÔËËã·û
         std::cout << "str1 == str2: " << (str1 == str2) << std::endl;
         std::cout << "str1 != str2: " << (str1 != str2) << std::endl;
         std::cout << "str1 < str2: " << (str1 < str2) << std::endl;
@@ -53,36 +53,36 @@ void testStringClass() {
         std::cout << "str1 > str2: " << (str1 > str2) << std::endl;
         std::cout << "str1 >= str2: " << (str1 >= str2) << std::endl;
 
-        // æµè¿ç®—ç¬¦
+        // Á÷ÔËËã·û
         std::cout << "Enter a string: ";
         String str6;
         std::cin >> str6;
         std::cout << "You entered: " << str6 << std::endl;
 
-        // æ¸…ç©ºå­—ç¬¦ä¸²æ•°æ®
+        // Çå¿Õ×Ö·û´®Êý¾Ý
         str6.clear();
         std::cout << "After clear, str6: '" << str6 << "' (length: " << str6.length() << ", empty: " << std::boolalpha << str6.empty() << ")" << std::endl;
 
-        // è¿”å›žå­—ç¬¦ä¸²çš„å‰¯æœ¬
+        // ·µ»Ø×Ö·û´®µÄ¸±±¾
         String str7 = str1.copy();
         std::cout << "Copied string: '" << str7 << "' (length: " << str7.length() << ")" << std::endl;
 
-        // è¿”å›žå­—ç¬¦ä¸²çš„å¤§å°
+        // ·µ»Ø×Ö·û´®µÄ´óÐ¡
         std::cout << "Size of str1: " << str1.size() << std::endl;
 
-        // åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º
+        // ÅÐ¶Ï×Ö·û´®ÊÇ·ñÎª¿Õ
         std::cout << "Is str1 empty? " << std::boolalpha << str1.empty() << std::endl;
 
-        // é€†è½¬å­—ç¬¦ä¸²
+        // Äæ×ª×Ö·û´®
         str1.reverse();
         std::cout << "Reversed string: '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
         str1.reverse(); // Reverse back to original for further tests
 
-        // è¿½åŠ å­—ç¬¦ä¸²
+        // ×·¼Ó×Ö·û´®
         str1.append(" World");
         std::cout << "Appended ' World': '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
 
-        // æ“¦é™¤æŒ‡å®šä½ç½®çš„å­ä¸²
+        // ²Á³ýÖ¸¶¨Î»ÖÃµÄ×Ó´®
         str1.erase(5, 5); // Erase " World"
         std::cout << "After erase ' Hello': '" << str1 << "' (length: " << str1.length() << ")" << std::endl;
     } catch (const std::exception& e) {

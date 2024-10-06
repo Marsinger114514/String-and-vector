@@ -1,7 +1,8 @@
 //vector.h
 #ifndef VECTOR_H
 #define VECTOR_H
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
 using namespace std;
 template <typename T>
 class Vector
@@ -29,7 +30,8 @@ class Vector
 		const T& operator[](int pos) const throw(int) ;
 		Vector<T>& operator+(const Vector<T>& v)throw(int);  											//重载+运算符，实现两个数组各个位置元素相加后合并为一个数组,但不同大小数组之间不能相加，若大小不同，抛出异常
 		Vector<T>& operator+=(const Vector<T>& v)throw(int);
-		friend std::ostream& operator<<(std::ostream& out, const Vector<T>& v);								//重载输出运算符（这是展示到屏幕上，不是输出到文件）
+		template <typename U>
+		friend std::ostream& operator<<(std::ostream& out, const Vector<U>& v);								//重载输出运算符（这是展示到屏幕上，不是输出到文件）
 		void resize();  																				//空间不足自动扩展
 		void reverse(); 																				//逆置向量
 		void input();																					//从文件内读取内容到容器
@@ -262,7 +264,7 @@ template <typename T>
 void Vector<T>:: input()
 {
 	ofstream ofs;
-	ofs.open("text.txt",ios::in);                                    					//文件名暂时假定为text，按照所需更改 
+	ofs.open("text.txt",ios::in);                                    					//文件名暂时假定为text，按照所需更改
 	ofs.close();
 }
 

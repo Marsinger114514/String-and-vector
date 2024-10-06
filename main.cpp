@@ -4,7 +4,7 @@
 #include "Vector.h"
 #include <iostream>
 #include <conio.h>
-int Pos(char ch, const char *str)			// è¿”å›æŒ‡å®šå­—ç¬¦chåœ¨å­—ç¬¦ä¸²strä¸­çš„ä¸‹æ ‡ã€‚ä¸å­˜åœ¨æ—¶è¿”å›-1
+int Pos(char ch, const char *str)			// ·µ»ØÖ¸¶¨×Ö·ûchÔÚ×Ö·û´®strÖĞµÄÏÂ±ê¡£²»´æÔÚÊ±·µ»Ø-1
 {
     int i;
     for(i=0; str[i]!='\0'; i++)
@@ -13,30 +13,30 @@ int Pos(char ch, const char *str)			// è¿”å›æŒ‡å®šå­—ç¬¦chåœ¨å­—ç¬¦ä¸²strä¸­çš„
     return -1;
 }
 
-int Choice(const char *prompt, const char *options="");	// å‡½æ•°å£°æ˜
-int Choice(const char *prompt, const char *options)		// å‡½æ•°å®šä¹‰ã€‚è¾“å‡ºæç¤ºä¿¡æ¯promptï¼Œè¾“å…¥é€‰æ‹©çš„å­—ç¬¦å¹¶è¿”å›ã€‚
+int Choice(const char *prompt, const char *options="");	// º¯ÊıÉùÃ÷
+int Choice(const char *prompt, const char *options)		// º¯Êı¶¨Òå¡£Êä³öÌáÊ¾ĞÅÏ¢prompt£¬ÊäÈëÑ¡ÔñµÄ×Ö·û²¢·µ»Ø¡£
 {
     int key;
     cout << prompt << "{";
     for(int i=0; options[i]!='\0'; i++)
     {
-        if(' ' < (options[i] & 0x7f) && (options[i] & 0x7f) < 127)	// é€‰é¡¹optionsä¸­çš„å¯æ‰“å°å­—ç¬¦
+        if(' ' < (options[i] & 0x7f) && (options[i] & 0x7f) < 127)	// Ñ¡ÏîoptionsÖĞµÄ¿É´òÓ¡×Ö·û
             cout << options[i] << ' ';
-        else														// é€‰é¡¹optionsä¸­çš„éƒ¨åˆ†æ§åˆ¶å­—ç¬¦
+        else														// Ñ¡ÏîoptionsÖĞµÄ²¿·Ö¿ØÖÆ×Ö·û
         {
             switch(options[i])
             {
-                case '\t':   cout << "[Tab] ";   break;					// é€‰é¡¹ä¸­çš„Tabå­—ç¬¦'\t'ï¼ˆå³ASCIIç¼–ç 9ï¼‰
-                case '\x1b': cout << "[Esc] ";   break;					// é€‰é¡¹ä¸­çš„Escå­—ç¬¦'\x1b'ï¼ˆå³ASCIIç¼–ç 27ï¼‰
-                case ' ':    cout << "[Space] "; break;					// é€‰é¡¹ä¸­çš„ç©ºæ ¼å­—ç¬¦' 'ï¼ˆå³ASCIIç¼–ç 32ï¼‰
+                case '\t':   cout << "[Tab] ";   break;					// Ñ¡ÏîÖĞµÄTab×Ö·û'\t'£¨¼´ASCII±àÂë9£©
+                case '\x1b': cout << "[Esc] ";   break;					// Ñ¡ÏîÖĞµÄEsc×Ö·û'\x1b'£¨¼´ASCII±àÂë27£©
+                case ' ':    cout << "[Space] "; break;					// Ñ¡ÏîÖĞµÄ¿Õ¸ñ×Ö·û' '£¨¼´ASCII±àÂë32£©
             }
         }
     }
-    cout << "\b}: ";					// '\b'é€€æ ¼ã€‚å…ˆé€€ä¸€æ ¼ï¼Œåœ¨è¾“å‡ºå³èŠ±æ‹¬å·
+    cout << "\b}: ";					// '\b'ÍË¸ñ¡£ÏÈÍËÒ»¸ñ£¬ÔÚÊä³öÓÒ»¨À¨ºÅ
     do
     {
         key = getch();
-    }while(options[0]!='\0' && Pos(key, options)<0); // è‹¥optionsä¸ºç©ºé•¿åº¦ä¸º0çš„å­—ç¬¦ä¸²ï¼Œåˆ™è¾“å…¥æ— é™åˆ¶ï¼›å¦åˆ™è¾“å…¥é¡¹åº”è¯¥åœ¨optinsä¸­ã€‚
+    }while(options[0]!='\0' && Pos(key, options)<0); // ÈôoptionsÎª¿Õ³¤¶ÈÎª0µÄ×Ö·û´®£¬ÔòÊäÈëÎŞÏŞÖÆ£»·ñÔòÊäÈëÏîÓ¦¸ÃÔÚoptinsÖĞ¡£
     cout << endl;
     return key;
 }
@@ -46,15 +46,15 @@ int main() {
     int key;
     while(true)
     {
-        cout << "\n\n\tC-å­—ç¬¦ä¸²å’Œå‘é‡ç±»æ¨¡æ¿æµ‹è¯•" << endl;
-        cout << "1 --- é“¾è¡¨å¯¹è±¡ï¼ˆåŒ…æ‹¬é“¾è¡¨çš„é“¾è¡¨ï¼‰æ„é€ ã€ææ„ã€æ ‡å‡†I/Oã€æ–‡ä»¶I/O" << endl;
-        cout << "2 --- æ’å…¥ç»“ç‚¹ã€æŸ¥æ‰¾/ç»§ç»­æŸ¥æ‰¾ã€å€’ç½®ã€æ’åºã€å¼‚å¸¸å¤„ç†ã€ä¿®æ”¹(æ›¿æ¢)æ•°æ®" << endl;
-        cout << "3 --- çº¦ç‘Ÿå¤«(Josephus)é—®é¢˜(æµ‹è¯•å½“å‰ç»“ç‚¹å®šä½æ–¹æ³•ï¼Œç¯ç»•å¤„ç†)" << endl;
-        cout << "4 --- é€šè®¯å½•ç±»å‹æµ‹è¯•" << endl;
-        cout << "5 --- æ¨¡æ‹Ÿå­˜å‚¨æ¬¾ä¸šåŠ¡" << endl;
-        key = Choice("\nè¯·é€‰æ‹©", "12345\x1b");
+        cout << "\n\n\tC-×Ö·û´®ºÍÏòÁ¿ÀàÄ£°å²âÊÔ" << endl;
+        cout << "1 --- C-×Ö·û´®²âÊÔ" << endl;
+        cout << "2 --- ²åÈë½áµã¡¢²éÕÒ/¼ÌĞø²éÕÒ¡¢µ¹ÖÃ¡¢ÅÅĞò¡¢Òì³£´¦Àí¡¢ĞŞ¸Ä(Ìæ»»)Êı¾İ" << endl;
+        cout << "3 --- ÕûĞÍÏòÁ¿ÀàÄ£°æ²âÊÔ" << endl;
+        cout << "4 --- Í¨Ñ¶Â¼ÀàĞÍ²âÊÔ" << endl;
+        cout << "5 --- Ä£Äâ´æ´¢¿îÒµÎñ" << endl;
+        key = Choice("\nÇëÑ¡Ôñ", "12345\x1b");
         cout << "\n\n";
-        if(key==27)		// '\x1b'ç­‰äº27ï¼ŒæŒ‡ESCé”®
+        if(key==27)		// '\x1b'µÈÓÚ27£¬Ö¸ESC¼ü
             break;
         switch(key)
         {

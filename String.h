@@ -6,45 +6,45 @@
 
 class String {
 public:
-    String(); // é»˜è®¤æ„é€ å‡½æ•°
-    String(const char* str); // å‚æ•°ä¸ºCå­—ç¬¦ä¸²çš„æ„é€ å‡½æ•°
-    String(const String& other); // æ‹·è´æ„é€ å‡½æ•°
-    String(String&& other) noexcept; // ç§»åŠ¨æ„é€ å‡½æ•°
-    ~String(); // ææ„å‡½æ•°
+    String(); // Ä¬ÈÏ¹¹Ôìº¯Êı
+    String(const char* str); // ²ÎÊıÎªC×Ö·û´®µÄ¹¹Ôìº¯Êı
+    String(const String& other); // ¿½±´¹¹Ôìº¯Êı
+    String(String&& other) noexcept; // ÒÆ¶¯¹¹Ôìº¯Êı
+    ~String(); // Îö¹¹º¯Êı
 
-    String& operator=(const String& other); // æ‹·è´èµ‹å€¼è¿ç®—ç¬¦
-    String& operator=(String&& other) noexcept; // ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦
+    String& operator=(const String& other); // ¿½±´¸³ÖµÔËËã·û
+    String& operator=(String&& other) noexcept; // ÒÆ¶¯¸³ÖµÔËËã·û
 
-    size_t length() const; // è·å–å­—ç¬¦ä¸²é•¿åº¦
-    const char* c_str() const; // è·å–Cå­—ç¬¦ä¸²
-    char& operator[](size_t index); // é‡è½½[]è¿ç®—ç¬¦ï¼ˆå¯ä¿®æ”¹ï¼‰
-    const char& operator[](size_t index) const; // é‡è½½[]è¿ç®—ç¬¦ï¼ˆåªè¯»ï¼‰
+    size_t length() const; // »ñÈ¡×Ö·û´®³¤¶È
+    const char* c_str() const; // »ñÈ¡C×Ö·û´®
+    char& operator[](size_t index); // ÖØÔØ[]ÔËËã·û£¨¿ÉĞŞ¸Ä£©
+    const char& operator[](size_t index) const; // ÖØÔØ[]ÔËËã·û£¨Ö»¶Á£©
 
-    String operator+(const String& other) const; // é‡è½½+è¿ç®—ç¬¦
-    String& operator+=(const String& other); // é‡è½½+=è¿ç®—ç¬¦
+    String operator+(const String& other) const; // ÖØÔØ+ÔËËã·û
+    String& operator+=(const String& other); // ÖØÔØ+=ÔËËã·û
 
-    bool operator<(const String& other) const; // é‡è½½<è¿ç®—ç¬¦
-    bool operator<=(const String& other) const; // é‡è½½<=è¿ç®—ç¬¦
-    bool operator>(const String& other) const; // é‡è½½>è¿ç®—ç¬¦
-    bool operator>=(const String& other) const; // é‡è½½>=è¿ç®—ç¬¦
-    bool operator==(const String& other) const; // é‡è½½==è¿ç®—ç¬¦
-    bool operator!=(const String& other) const; // é‡è½½!=è¿ç®—ç¬¦
+    bool operator<(const String& other) const; // ÖØÔØ<ÔËËã·û
+    bool operator<=(const String& other) const; // ÖØÔØ<=ÔËËã·û
+    bool operator>(const String& other) const; // ÖØÔØ>ÔËËã·û
+    bool operator>=(const String& other) const; // ÖØÔØ>=ÔËËã·û
+    bool operator==(const String& other) const; // ÖØÔØ==ÔËËã·û
+    bool operator!=(const String& other) const; // ÖØÔØ!=ÔËËã·û
 
-    friend std::ostream& operator<<(std::ostream& os, const String& str); // é‡è½½<<è¿ç®—ç¬¦
-    friend std::istream& operator>>(std::istream& is, String& str); // é‡è½½>>è¿ç®—ç¬¦
+    friend std::ostream& operator<<(std::ostream& os, const String& str); // ÖØÔØ<<ÔËËã·û
+    friend std::istream& operator>>(std::istream& is, String& str); // ÖØÔØ>>ÔËËã·û
 
-    void clear(); // æ¸…ç©ºå­—ç¬¦ä¸²æ•°æ®
-    String copy() const; // è¿”å›å­—ç¬¦ä¸²çš„å‰¯æœ¬
-    unsigned int size() const; // è¿”å›å­—ç¬¦ä¸²çš„å¤§å°
-    bool empty() const; // åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º
-    String& reverse(); // é€†è½¬å­—ç¬¦ä¸²
-    String& append(const String& str); // è¿½åŠ å­—ç¬¦ä¸²
-    String& erase(const unsigned int& index, const unsigned int& len); // æ“¦é™¤æŒ‡å®šä½ç½®çš„å­ä¸²
+    void clear(); // Çå¿Õ×Ö·û´®Êı¾İ
+    String copy() const; // ·µ»Ø×Ö·û´®µÄ¸±±¾
+    unsigned int size() const; // ·µ»Ø×Ö·û´®µÄ´óĞ¡
+    bool empty() const; // ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎª¿Õ
+    String& reverse(); // Äæ×ª×Ö·û´®
+    String& append(const String& str); // ×·¼Ó×Ö·û´®
+    String& erase(const unsigned int& index, const unsigned int& len); // ²Á³ıÖ¸¶¨Î»ÖÃµÄ×Ó´®
 
 private:
     char* data;
     size_t len;
-    void copy_data(const char* str); // è¾…åŠ©å‡½æ•°ï¼Œç”¨äºå¤åˆ¶å­—ç¬¦ä¸²
+    void copy_data(const char* str); // ¸¨Öúº¯Êı£¬ÓÃÓÚ¸´ÖÆ×Ö·û´®
 };
 
 #endif // STRING_H
