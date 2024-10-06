@@ -35,7 +35,7 @@ class Vector
 		void resize();  																				//空间不足自动扩展
 		void reverse(); 																				//逆置向量
 		void input();																					//从文件内读取内容到容器
-		void output();																					//输出容器内数据到文件
+		void output(const string& filename);																					//输出容器内数据到文件
 		void push_back(const T val);																	//尾部插入一个元素
 		void push_front(const T val);																	//头部插入一个元素
 		void insert(const T val, int pos);																//在pos位置后插入一个元素（从0开始）
@@ -73,7 +73,7 @@ template <typename T>
 T& Vector<T>:: operator[](int pos) throw (int)
 {
 	if(pos<0 || pos >= size) throw -1;                                 //下标越界，抛异常
-	return *(this+pos);
+	return data[pos];
 }
 
 template <typename T>
@@ -167,9 +167,9 @@ void Vector<T>:: insert(const T val, int pos)
 	resize();
 	for(int i=size-1 ;i>=pos-1 ;i--)
 	{
-		*(this+i+1)=*(this+i);
+		data[i+1]=data[i];
 	}
-	*(this+pos-1)=val;
+	data[pos-1]=val;
 	size++;
 }
 
@@ -201,7 +201,7 @@ void Vector<T>:: pop_front()
 {
 	for(int i=1 ;i<size ;i++)
 	{
-		*(this+i-1)=*(this+i);														//所有项都向前移动一位 
+		data[i-1]=data[i];														//所有项都向前移动一位
 	}
 	size--;
 }
@@ -209,10 +209,10 @@ void Vector<T>:: pop_front()
 template <typename T>
 void Vector<T>:: erease(const int pos) throw (int)
 {
-	if(pos<0 || pos>this->space()) throw -1;
+	if(pos<0 || pos>size) throw -1;
 	for(int i=pos ;i<size ;i++)
 	{
-		*(this+i-1)=*(this+i);														//pos后的元素向前移动一位 
+		data[i-1]=data[i];														//pos后的元素向前移动一位
 	}
 	size--;
 }
@@ -220,11 +220,11 @@ void Vector<T>:: erease(const int pos) throw (int)
 template <typename T>
 void Vector<T>:: erease(const int lt, const int rt) throw (int)
 {
-	if(lt<0 || lt>this->space() || rt<0 || rt>this->space() || lt>rt) throw -1;
+	if(lt<0 || lt>size || rt<0 || rt>size || lt>rt) throw -1;
 	int n=rt-lt+1;
 	for(int i=lt-1 ;i<size-n ;i++)
 	{
-		*(this+i)=*(this+i+n);														//rt后的元素向前移动n位
+		data[i]=data[i+n];														//rt后的元素向前移动n位
 	}
 	size-=n;
 }
@@ -261,18 +261,30 @@ bool Vector<T>:: isempty() const
 }
 
 template <typename T>
-void Vector<T>:: input()
-{
-	ofstream ofs;
-	ofs.open("text.txt",ios::in);                                    					//文件名暂时假定为text，按照所需更改
-	ofs.close();
+void Vector<T>::input() {
+	ifstream ifs("text.txt");
+	if (!ifs) {
+		cout << "无法打开文件!" << endl;
+		return;
+	}
+
+	T value;
+	while (ifs >> value) {
+		push_back(value); // 使用 push_back 添加到向量中
+	}
+	ifs.close();
 }
 
 template <typename T>
-void Vector<T>:: output()
-{
-	ofstream ofs;
-	ofs.open("text.txt",ios::out);
+void Vector<T>::output(const string& filename) {
+	ofstream ofs(filename, ios::out);
+	if (!ofs) {
+		cerr << "无法打开文件: " << filename << endl;
+		return;
+	}
+	for (int i = 0; i < size; ++i) {
+		ofs << data[i] << ' ';
+	}
 	ofs.close();
 }
 

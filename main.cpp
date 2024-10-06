@@ -42,27 +42,23 @@ int Choice(const char *prompt, const char *options)		// 函数定义。输出提示信息pr
 }
 
 int main() {
-    void testStringClass(), testVector();
+    void testStringClass(), testVectorString(), testVectorint();
     int key;
     while(true)
     {
-        cout << "\n\n\tC-字符串和向量类模板测试" << endl;
+        cout << "C-字符串和向量类模板测试" << endl;
         cout << "1 --- C-字符串测试" << endl;
-        cout << "2 --- 插入结点、查找/继续查找、倒置、排序、异常处理、修改(替换)数据" << endl;
+        cout << "2 --- 字符型向量类模版测试" << endl;
         cout << "3 --- 整型向量类模版测试" << endl;
-        cout << "4 --- 通讯录类型测试" << endl;
-        cout << "5 --- 模拟存储款业务" << endl;
-        key = Choice("\n请选择", "12345\x1b");
+        key = Choice("\n请选择", "123\x1b");
         cout << "\n\n";
         if(key==27)		// '\x1b'等于27，指ESC键
             break;
         switch(key)
         {
             case '1':	testStringClass();			break;
-            // case '2':	testVectorstringClass();	break;
-            case '3':	testVector();			    break;
-            case '4':		        break;
-            case '5':			    break;
+            case '2':	testVectorString();	        break;
+            case '3':	testVectorint();			break;
         }
     }
     return 0;
