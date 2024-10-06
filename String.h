@@ -44,7 +44,6 @@ public:
 private:
     char* data;
     size_t len;
-
     void copy_data(const char* str); // 辅助函数，用于复制字符串
 };
 

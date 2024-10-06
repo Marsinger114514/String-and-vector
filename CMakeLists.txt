@@ -3,5 +3,4 @@ project(work4)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_EXE_LINKER_FLAGS "-static")
-add_executable(work4 main.cpp test_string.cpp String.cpp test_vector.cpp
-        Vector.h)
+add_executable(work4 main.cpp test_string.cpp String.cpp test_vector.cpp)

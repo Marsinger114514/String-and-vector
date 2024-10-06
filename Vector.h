@@ -3,7 +3,6 @@
 #define VECTOR_H
 #include <bits/stdc++.h>
 using namespace std;
-
 template <typename T>
 class Vector
 {
@@ -15,16 +14,22 @@ class Vector
 		Vector(const int s): data(nullptr),size(0),capacity(s) {											//构造函数
 			data = new T[capacity];
 		};
-		Vector(const Vector<T>&vec):data(vec.data),size(vec.size),capacity(vec.capacity){}; 					//深拷贝构造函数
+		Vector(const Vector<T>& vec) : size(vec.size), capacity(vec.capacity) {								//深拷贝构造函数
+			data = new T[capacity];
+			for (int i = 0; i < size; i++) {
+				data[i] = vec.data[i];
+			}
+		}
 		~Vector()
 		{
 			delete[] data;
 		};
 		Vector <T>& operator=(const Vector<T>& v); 														//重载赋值运算符
 		T& operator[](int pos) throw(int);     															//重载[]运算符，下标越界抛出异常
+		const T& operator[](int pos) const throw(int) ;
 		Vector<T>& operator+(const Vector<T>& v)throw(int);  											//重载+运算符，实现两个数组各个位置元素相加后合并为一个数组,但不同大小数组之间不能相加，若大小不同，抛出异常
 		Vector<T>& operator+=(const Vector<T>& v)throw(int);
-		friend ostream & operator << <T> (ostream& ,const Vector<T>& v);								//重载输出运算符（这是展示到屏幕上，不是输出到文件）
+		friend std::ostream& operator<<(std::ostream& out, const Vector<T>& v);								//重载输出运算符（这是展示到屏幕上，不是输出到文件）
 		void resize();  																				//空间不足自动扩展
 		void reverse(); 																				//逆置向量
 		void input();																					//从文件内读取内容到容器
@@ -57,7 +62,7 @@ Vector<T>& Vector<T>:: operator=(const Vector<T>& v)
 	if(this==&v) return *this;
 	for(int i=0 ;i<v.getsize() ;i++)
 	{
-		*(this+i)=v[i];
+		data[i]=v[i];
 	}
 	return *this;
 }
@@ -65,8 +70,14 @@ Vector<T>& Vector<T>:: operator=(const Vector<T>& v)
 template <typename T>
 T& Vector<T>:: operator[](int pos) throw (int)
 {
-	if(pos<0 || pos>this->space()) throw -1;                                 //下标越界，抛异常 
+	if(pos<0 || pos >= size) throw -1;                                 //下标越界，抛异常
 	return *(this+pos);
+}
+
+template <typename T>
+const T& Vector<T>::operator[](int pos) const throw(int) {
+	if (pos < 0 || pos >= size) throw -1; // 下标越界，抛出异常
+	return data[pos]; // 返回 const 引用，避免修改
 }
 
 template <typename T>
@@ -75,7 +86,7 @@ Vector<T>& Vector<T>:: operator+(const Vector<T>& v) throw(int)
 	if(this->getsize()!=v.getsize()) throw -1;								//大小不同，抛异常 
 	for(int i=0 ;i<this->getsize() ;i++)
 	{
-		*(this+i)+=v[i];													//每个元素相加 
+		data[i] += v[i];													//每个元素相加
 	}
 	return *this;
 }
@@ -84,21 +95,20 @@ template <typename T>
 Vector<T>& Vector<T>:: operator+=(const Vector<T>& v) throw(int)
 {
 	if(this->getsize() != v.getsize() ) throw -1;
+	Vector<T> result(*this);
 	for(int i=0 ;i<this->getsize() ;i++)
 	{
-		*(this+i)+=v[i];
+		result[i] += v[i]; ;
 	}
-	return *this;
+	return result;
 }
 
 template <typename T>
-ostream &operator <<(ostream& out,const Vector<T>& v)
-{
-	for(int i=0 ;i<v.getsize() ;i++)
-	{
-		out<<v[i]<<' ';
-	}
-	return out;
+std::ostream & operator<<(std::ostream& out, const Vector<T>& v) {
+    for (int i = 0; i < v.getsize(); i++) {
+        out << v[i] << ' ';
+    }
+    return out;
 }
 
 template <typename T>
@@ -123,9 +133,9 @@ void Vector<T>:: reverse()
 	T temp;
 	for(int i=0 ;i<size/2 ;i++)
 	{
-		temp=*(this+i);
-		*(this+i)=*(this+size-1-i);												//把第一项和最后一项的值交换，然后是第二项和最后一项，直到全部交换完成 
-		*(this+size-1-i)=temp;
+		temp = data[i];
+		data[i] = data[size - 1 - i]; // 将当前元素与对称位置的元素交换
+		data[size - 1 - i] = temp;
 	}
 }
 
@@ -133,7 +143,7 @@ template <typename T>
 void Vector<T>:: push_back(const T val)
 {
 	resize();
-	*(this+size)=val;
+	data[size] = val;
 	size++;
 }
 
@@ -141,11 +151,11 @@ template <typename T>
 void Vector<T>:: push_front(const T val)
 {
 	resize();
-	for(int i=size-1 ;i>=0 ;i--)
+	for(int i = size-1 ;i >= 0 ;i--)
 	{
-		*(this+i+1)=*(this+i);													//把每一个元素都向后移一位 
+		data[i+1] = data[i];													//把每一个元素都向后移一位
 	}
-	*this=val;
+	data[0] = val;
 	size++;
 }
 
@@ -166,7 +176,7 @@ void Vector<T>:: insert(const T val, int pos, int n)
 {
 	for(int i=0 ;i<n ;i++)
 	{
-		for(int j=size+i-1 ;i>=pos+i-1 ;j--)
+		for(int j=size+i-1 ;j>=pos - 1 ;j--)
 		{
 			*(this+j+1)=*(this+j);
 		}
@@ -220,13 +230,13 @@ void Vector<T>:: erease(const int lt, const int rt) throw (int)
 template <typename T>
 T& Vector<T>:: front()
 {
-	return *this;
+	return data[0];
 }
 
 template <typename T>
 T& Vector<T>:: back()
 {
-	return *(this+size-1);
+	return data[size-1];
 }
 
 template <typename T>
